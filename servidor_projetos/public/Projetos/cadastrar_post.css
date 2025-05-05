@@ -1,0 +1,13 @@
+body{
+    background-color: black;
+}
+.div1{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+.div2{
+    display: flex;
+    justify-content: center;
+    color: white;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastrar Post</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="cadastrar_post.css"> <!-- Supondo que você tenha o arquivo de CSS para esta página -->
+    </head>
+    <body>
+        <div class="div1">
+            <h1>Cadastrar Novo Post</h1>
+        </div>
+
+        <div class="div2">
+            <!-- Formulário para criar um novo post -->
+            <form action="/criar_post" method="POST">
+                <label for="title">Título:</label><br>
+                <input type="text" id="title" name="title" required><br><br>
+
+                <label for="summary">Resumo:</label><br>
+                <textarea id="summary" name="summary" required></textarea><br><br>
+
+                <label for="content">Conteúdo:</label><br>
+                <textarea id="content" name="content" required></textarea><br><br>
+
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css"> <!-- Supondo que você tenha o arquivo style.css -->
+    </head>
+    <body>
+        <div class="div1">
+            <h1>Bem-vindo ao Blog!</h1>
+        </div>
+        
+        <!-- Botão para redirecionar para a página de cadastro de post -->
+        <div class="div2">
+            <button onclick="window.location.href='/cadastrar_post'">Criar Novo Post</button>
+        </div> 
+
+        <div class="div3">
+            <% if (posts.length === 0) { %>
+              <p>Nenhum post publicado ainda.</p>
+            <% } else { %>
+              <% posts.forEach(function(post) { %>
+                <div class="post">
+                  <h2><%= post.title %></h2>
+                  <p><strong>Resumo:</strong> <%= post.summary %></p>
+                  <p><%= post.content %></p>
+                  <hr>
+                </div>
+              <% }); %>
+            <% } %>
+          </div>
+    </body>
+</html>
