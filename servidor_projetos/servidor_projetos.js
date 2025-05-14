@@ -4,7 +4,7 @@ let bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 
 const MongoClient = mongodb.MongoClient;
-const uri = 'mongodb+srv://kauan:O2WZn5IaWo2Rj2vS@cluster0.tzvmrin.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const uri = 'mongodb+srv://kauan:pJGg8HUJbuEsvLFj@cluster0.tzvmrin.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 var app = express();
@@ -28,7 +28,7 @@ async function conectar() {
     return client.db("ProjetoBD");
 }
 
-// Rota para o index, redireciona para "Projetos/projetos.html"
+
 app.get("/", function (req, res) {
     res.redirect("Projetos/projetos.html");
 });
@@ -51,7 +51,7 @@ app.get("/blog", async function (req, res) {
         res.render("blog", { posts });
     } catch (err) {
         console.error("Erro ao buscar posts:", err);
-        res.status(400).send("Erro ao carregar o blog");
+        res.status(500).send("Erro ao carregar o blog");
     }
 });
 
