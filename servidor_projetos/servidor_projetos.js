@@ -6,6 +6,8 @@ var mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 const uri = 'mongodb+srv://kauan:pJGg8HUJbuEsvLFj@cluster0.tzvmrin.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+var dbo = client.db("bd_carros");
+var usuarios = dbo.collection("usuarios");
 
 var app = express();
 app.use(express.static('./public'));
@@ -19,13 +21,14 @@ server.listen(80);
 
 console.log("Servidor rodando!");
 
-let usuarios = []; // Lista para armazenar usuários cadastrados
+let usuarios2 = []; // Lista para armazenar usuários cadastrados
 
-async function conectar() {
+
+async function conectar(nomeBanco = "ProjetoBD") {
     if (!client.topology || !client.topology.isConnected()) {
         await client.connect();
     }
-    return client.db("ProjetoBD");
+    return client.db(nomeBanco);
 }
 
 
@@ -42,6 +45,18 @@ app.get("/login", function (req, res) {
 app.get("/cadastrar", function (req, res) {
     res.redirect("Projetos/cadastro.html");
 });
+
+app.get("/inicio", function(req,res){
+    res.redirect("Projetos/menu.html")
+})
+app.get("/cadastro_usu", function (req, res) {
+    res.redirect("Projetos/cadastro_usu.html");
+});
+app.get("/carros", function(req, res) {
+    res.redirect("Projetos/carros.html");
+});
+
+
 
 // Rota para o blog (busca posts do MongoDB)
 app.get("/blog", async function (req, res) {
@@ -81,7 +96,7 @@ app.post("/cadastrar", function (req, res) {
     console.log("Cadastro:", nome, user, senha);
 
     // Adiciona o novo usuário
-    usuarios.push({ nome, user, senha });
+    usuarios2.push({ nome, user, senha });
 
     res.redirect("/login");
 });
@@ -92,7 +107,7 @@ app.post("/login", function (req, res) {
     let senha = req.body.Senha;
     console.log("Tentativa de login:", user, senha);
 
-    let encontrado = usuarios.find(u => u.user === user && u.senha === senha);
+    let encontrado = usuarios2.find(u => u.user === user && u.senha === senha);
 
     if (encontrado) {
         res.render("resposta", { nome: encontrado.nome, user: encontrado.user, senha: encontrado.senha, erro: null });
@@ -100,6 +115,50 @@ app.post("/login", function (req, res) {
         res.render("resposta", { nome: null, user: null, senha: null, erro: "Usuário ou senha incorretos!" });
     }
 });
+
+app.post("/cadastro_usu", async function(req, resp) {
+    const db = await conectar("bd_carros");
+    let data = {
+        db_nome: req.body.nome,
+        db_usuario: req.body.usuario,
+        db_senha: req.body.senha
+    };
+
+    db.collection("usuarios").insertOne(data, function (err) {
+        if (err) {
+            resp.render('resposta_usu.ejs', { resposta: "Erro ao cadastrar usuário!" });
+        } else {
+            // Redireciona para o login após cadastro
+            resp.redirect("/inicio");
+        }
+    });
+});
+
+
+app.post("/login_usu", async function(req, resp) {
+    const db = await conectar("bd_carros");
+    let data = {
+        db_usuario: req.body.usuario,
+        db_senha: req.body.senha
+    };
+
+    db.collection("usuarios").find(data).toArray(function(err, items) {
+        if (items.length === 0) {
+            resp.render('resposta_usu.ejs', { resposta: "Usuário/senha não encontrado!" });
+        } else if (err) {
+            resp.render('resposta_usu.ejs', { resposta: "Erro ao logar usuário!" });
+        } else {
+            // Redireciona para carros.html
+            resp.redirect("/carros");
+        }
+    });
+});
+
+
+
+
+
+
 
 
 

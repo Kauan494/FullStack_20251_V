@@ -20,6 +20,26 @@ body{
     padding-top: 250px;
     font-size: 20px;
 }
+.links{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -50px;
+    gap: 20px;
+}
+.links a{
+    display: inline-block;
+}
+.links img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+    box-shadow: 0 0 20px red;
+}
+.links a:hover img {
+    transform: scale(1.1);
+}
+
 .home{
     display: flex;
     justify-content: flex-start;
@@ -37,6 +57,7 @@ body{
 .home a:hover img {
     transform: scale(1.1);
 }
+
 
 .bordercontainer{
     display: flex;

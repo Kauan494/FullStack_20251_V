@@ -1,0 +1,80 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    
+}
+
+
+.canvascontainer{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.borda{
+    border: solid red;
+    border-radius: 8px;
+}
+
+#red{
+    color: #ff0000;
+    display: flex;
+    justify-content: center;  
+}
+
+.botao{
+    background-color: black;
+    color: red;
+    border: 2px solid red;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.botao  :hover {
+    background-color: red;
+    color: black;
+    box-shadow: 0 0 10px red;
+}
+.links{
+    display: flex;
+    margin-left: 1150px;
+    justify-content: flex-end;
+    margin-top: -50px;
+    gap: 20px;
+}
+.links a{
+    display: inline-block;
+}
+.links img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+    box-shadow: 0 0 20px red;
+}
+.links a:hover img {
+    transform: scale(1.1);
+}
+.home a{
+    margin-right: 1200px;
+    display: inline-block;
+}
+.home img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+    box-shadow: 0 0 20px red;
+}
+.home a:hover img {
+    transform: scale(1.1);
+}
