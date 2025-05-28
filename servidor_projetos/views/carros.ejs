@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Carros</title>
+    <link rel="stylesheet" href="resposta.css">
+    
+</head>
+<body>
+    <div class="div1"><h1>Bem-vindo ao sistema de venda de carros!</h1></div>
+
+    <div>
+        <h2>Cadastro de Carro:</h2>
+        <form action="/cadastrar_carro" method="post">
+            <p>Marca: <input type="text" name="marca" required></p>
+            <p>Modelo: <input type="text" name="modelo" required></p>
+            <p>Ano: <input type="number" name="ano" required></p>
+            <p>Quantidade Disponível: <input type="number" name="qtde_disponivel" required></p>
+            <input type="submit" value="Cadastrar">
+        </form>
+    </div>
+
+    <h2>Lista de Carros:</h2>
+    <table>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Ano</th>
+            <th>Disponível</th>
+            <th>Ações</th>
+        </tr>
+        <% carros.forEach(function(carro) { %>
+            <tr>
+                <td><%= carro.marca %></td>
+                <td><%= carro.modelo %></td>
+                <td><%= carro.ano %></td>
+                <td>
+                    <% if (carro.qtde_disponivel <= 0) { %>
+                        <strong>Esgotado</strong>
+                    <% } else { %>
+                        <%= carro.qtde_disponivel %>
+                    <% } %>
+                </td>
+                <td>
+                   
+
+                    <!-- Atualizar -->
+                    <form action="/atualizar_carro" method="post" class="form-inline">
+                        <input type="hidden" name="id" value="<%= carro._id %>">
+                        <input type="text" name="marca" value="<%= carro.marca %>">
+                        <input type="text" name="modelo" value="<%= carro.modelo %>">
+                        <input type="text" name="ano" value="<%= carro.ano %>">
+                        <input type="number" name="qtde" value="<%= carro.qtde_disponivel %>">
+                        <input type="submit" value="Atualizar">
+                    </form>
+                     <!-- Remover -->
+                    <form action="/remover_carro" method="post" style="display:inline-block; margin-bottom: 5px;">
+                        <input type="hidden" name="id" value="<%= carro._id %>">
+                        <input type="submit" value="Remover">
+                    </form>
+
+                    <!-- Vender -->
+                    <form action="/vender_carro" method="post" style="display:inline-block; margin-top: 5px;">
+                        <input type="hidden" name="id" value="<%= carro._id %>">
+                        <input type="submit" value="Vender">
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+
+    <br>
+    <form action="/inicio" method="get">
+        <input type="submit" value="Voltar ao Menu">
+    </form>
+</body>
+</html>

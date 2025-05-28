@@ -1,0 +1,137 @@
+body{
+    background-color: black;
+   
+}
+.txt{
+    display: flex;
+    justify-content: center;
+    color: red;
+    font-style: italic;
+}
+.home a{
+    display: inline-block;
+}
+.home img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+    box-shadow: 0 0 20px red;
+}
+.home a:hover img {
+    transform: scale(1.1);
+}
+.links{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -50px;
+    gap: 20px;
+}
+.links a{
+    display: inline-block;
+}
+.links img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+    box-shadow: 0 0 20px red;
+}
+.links a:hover img {
+    transform: scale(1.1);
+}
+.principal{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    align-items: center;
+}
+.principal div{
+    flex-direction: column;
+    display: flex;
+    height: 500px;
+    width: 600px;
+    border: 2px solid red ;
+    gap: 5px;
+    border-radius: 10px;
+    margin-left: 20px;
+    box-shadow: 0 0 20px red;/*sombreamento da borda, 0 e 0 é o deslocamento horizontal e vertical*/
+}
+.txt2{
+    display: flex;
+    justify-content: center;
+    color: white;
+    border-left: 3px solid white ;
+    border-right: 3px solid white ;
+    border-top: 5px solid white ;
+    border-bottom: 5px solid white ;
+    margin: 10px;
+    border-radius: 10px;
+    width: 160px;
+    margin-left: 220px;
+
+}
+#p1{
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3px;
+}
+#p2{
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: -20px;
+}
+.img1{
+    position: relative;
+    left: 68px;
+    top: 37px;
+}
+.img2{
+    display: flex;
+    flex-direction: column;
+    margin: 27px;
+    margin-left: 100px;
+    margin-top: -50px;
+}
+.img3{
+    position: relative;
+    left: 132px;
+    top: -82px;
+}
+.lista{
+    position: relative;
+    left: 200px;
+    top: -182px;
+    flex-direction: column;
+    color: white;
+}
+#p3{
+    color: white;
+    position: relative;
+    text-align: center;
+    top: -220px;
+}
+.txt3{
+    position: relative;
+    text-align: center;
+    color: white;
+    border-left: 3px solid white ;
+    border-right: 3px solid white ;
+    border-top: 5px solid white ;
+    border-bottom: 5px solid white ;
+    margin: 10px;
+    border-radius: 10px;
+    width: 160px;
+    left: 210px;
+    top: -200px;
+}
+.img4{
+    position: relative;
+    top: -220px;
+    left: 250px;
+}
+

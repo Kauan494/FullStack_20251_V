@@ -1,0 +1,104 @@
+body{
+    background-color: black;
+}
+#txt1{
+    color: red;
+    text-align: center;
+    font-style: italic;
+}
+.links{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -50px;
+    gap: 20px;
+}
+.links a{
+    display: inline-block;
+}
+.links img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+    box-shadow: 0 0 20px red;
+}
+.links a:hover img {
+    transform: scale(1.1);
+}
+
+
+.home a{
+    display: inline-block;
+}
+.home img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+    box-shadow: 0 0 20px red;
+}
+.home a:hover img {
+    transform: scale(1.1);
+}
+
+#img{
+    border-radius: 150px ;
+    box-shadow: 0 0 30px red;
+}
+.imagem{
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    padding-top: 50px;
+}
+.bio{
+    display: flex;
+    justify-content: center;
+    color: white;
+    gap: 200px;
+}
+#p1{
+    padding-left: 120px;
+}
+.contato{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding-right: 400px;
+}
+.contato a{
+    display: inline-block;
+}
+.contato img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+    box-shadow: 0 0 20px red;
+}
+.contato a:hover img {
+    transform: scale(1.1);
+}
+.contato2{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding-left: 450px;
+    margin-top: -50px;
+    
+}
+.contato2 a{
+    display: inline-block;
+}
+.contato2 img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    transition: transform 0.2s;
+    box-shadow: 0 0 20px red;
+}
+.contato2 a:hover img{
+    transform: scale(1.1);
+}

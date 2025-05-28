@@ -1,0 +1,43 @@
+<!-- pag 2 -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Galactus</title>
+        <meta charset="UTF-8">
+        <link href="jogo.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="home">
+            <a href="Home.html">
+            <img src="casinha.png" alt="casinha">
+        </a>
+        </div>
+        <div class="links">
+            <a href="Sobre_o_jg.html">
+                 <img src="icone_sobre_o_jogo.png" alt="">
+            </a>
+            
+            <a href="tutorial.html">
+                <img src="icone_tutorial.png" alt="">
+            </a>
+            <a href="Dev.html">
+                <img src="icone_rosto.png" alt="">
+            </a>
+        </div>
+        <div class="canvascontainer">
+            <h1 id="red" class="padding">Galácticos</h1>
+            <div>
+                <button type="button" class="botao" id="start" onclick="IniciaGame()">Play</button>
+            </div>
+            <br>
+            <div>
+                <canvas id="canvas" class="borda" width="600" height="600" style="background-image: url('fundo.jpg'); background-size: cover;"></canvas>
+            </div>
+
+        </div>
+        
+        <script src="jogo.js" type="text/javascript"> </script>
+    </body>
+</html>

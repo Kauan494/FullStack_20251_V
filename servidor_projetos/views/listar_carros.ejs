@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Carros</title>
+    <link rel="stylesheet" href="resposta.css">
+</head>
+<body>
+    <h1>Carros</h1>
+    <table>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Ano</th>
+            <th>Quantidade Disponível</th>
+        </tr>
+        <% carros.forEach(function(carro) { %>
+        <tr>
+            <td><%= carro.marca %></td>
+            <td><%= carro.modelo %></td>
+            <td><%= carro.ano %></td>
+            <td><%= carro.qtde_disponivel %></td>
+        </tr>
+        <% }) %>
+    </table>
+
+    <a href="/carros">Voltar para pagina de carros</a>
+</body>
+</html>
+
+
+  
+  

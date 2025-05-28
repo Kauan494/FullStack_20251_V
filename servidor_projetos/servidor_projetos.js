@@ -52,8 +52,14 @@ app.get("/inicio", function(req,res){
 app.get("/cadastro_usu", function (req, res) {
     res.redirect("Projetos/cadastro_usu.html");
 });
-app.get("/carros", function(req, res) {
-    res.redirect("Projetos/carros.html");
+app.get("/carros", async function(req, res) {
+  try {
+    const db = await conectar("bd_carros");
+    const carros = await db.collection("carros").find().toArray();
+    res.render("carros", { carros });
+  } catch (err) {
+    res.status(500).send("Erro ao carregar carros");
+  }
 });
 
 
@@ -141,10 +147,12 @@ app.post("/login_usu", async function(req, resp) {
         db_usuario: req.body.usuario,
         db_senha: req.body.senha
     };
-
+    // Busca na coleção "usuarios" os documentos que correspondem aos dados informados (ex: login e senha)
     db.collection("usuarios").find(data).toArray(function(err, items) {
+      // Se nenhum usuário for encontrado (lista vazia), exibe mensagem de erro de login
         if (items.length === 0) {
             resp.render('resposta_usu.ejs', { resposta: "Usuário/senha não encontrado!" });
+          // Se ocorrer algum erro durante a busca no banco de dados, exibe mensagem de erro genérica
         } else if (err) {
             resp.render('resposta_usu.ejs', { resposta: "Erro ao logar usuário!" });
         } else {
@@ -154,6 +162,82 @@ app.post("/login_usu", async function(req, resp) {
     });
 });
 
+app.get("/listar_carros", async function(req, res) {
+  try {//Serve para tentar executar um bloco de código que pode causar erro
+    const db = await conectar("bd_carros"); // conecta ao banco de carros
+    const carros = await db.collection("carros").find().toArray(); // busca todos os carros
+    res.render("listar_carros", { carros }); // renderiza a página listar_carros.ejs
+  } catch (err) {//Trata esse erro e envia a reposta correta
+    console.error("Erro ao buscar carros:", err);
+    res.status(500).send("Erro ao carregar carros");
+  }
+});
+
+app.post("/cadastrar_carro", async function (req, res) {
+  const { marca, modelo, ano, qtde_disponivel } = req.body;
+
+  const carro = {
+    marca,
+    modelo,
+    ano: parseInt(ano),
+    qtde_disponivel: parseInt(qtde_disponivel)
+  };
+
+  try {
+    const db = await conectar("bd_carros"); // usa o banco correto
+    await db.collection("carros").insertOne(carro);
+    res.redirect("/listar_carros"); // depois de cadastrar, redireciona para a lista
+  } catch (err) {
+    console.error("Erro ao cadastrar carro:", err);
+    res.status(500).send("Erro ao cadastrar carro");
+  }
+});
+
+app.post("/remover_carro", async function(req, res) {
+  const id = new mongodb.ObjectId(req.body.id);
+  try {
+    const db = await conectar("bd_carros");
+    await db.collection("carros").deleteOne({ _id: id });
+    res.redirect("/carros");
+  } catch (err) {
+    res.status(500).send("Erro ao remover carro");
+  }
+});
+
+app.post("/atualizar_carro", async function (req, res) {
+    const id = new mongodb.ObjectId(req.body.id);
+    const db = await conectar("bd_carros");
+
+    await db.collection("carros").updateOne(
+        { _id: id },
+        {
+            $set: {
+                marca: req.body.marca,
+                modelo: req.body.modelo,
+                ano: req.body.ano,
+                qtde_disponivel: parseInt(req.body.qtde)
+            }
+        }
+    );
+
+    res.redirect("/carros");
+});
+
+app.post("/vender_carro", async function(req, res) {
+  const id = new mongodb.ObjectId(req.body.id);
+  try {
+    const db = await conectar("bd_carros");
+    const carro = await db.collection("carros").findOne({ _id: id });
+
+    if (carro.qtde_disponivel > 0) {
+      await db.collection("carros").updateOne({ _id: id }, { $inc: { qtde_disponivel: -1 } });
+    }
+
+    res.redirect("/carros");
+  } catch (err) {
+    res.status(500).send("Erro ao vender carro");
+  }
+});
 
 
 
