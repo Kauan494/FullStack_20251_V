@@ -1,2 +1,2 @@
-# FullStack_20251_V
+Aqqui tem um pouco dos meus projetos em que utilizei linguagens de Front-end e back-end, com o MongoDb para banco de dados
  
